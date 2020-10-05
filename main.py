@@ -20,8 +20,10 @@ def main():
 				for key, val in data.items():
 					if key in ExifTags.TAGS:
 						print("%s: %s" % (ExifTags.TAGS[key], repr(val)))
-	except OSError:
-		pass
+	except IOError as e:
+		print("I/O error({0}): {1}".format(e.errno, e.strerror))
+	except:
+		print("Unexpected error:", sys.exc_info()[0])
 
 
 if __name__ == "__main__": main()
